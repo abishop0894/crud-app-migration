@@ -2,41 +2,18 @@ let counter = 0;
 const one = document.getElementById('form')
 let parent = document.getElementById('span');
 let form = document.getElementById('form');
-
+let edit;
 let state = {
-
-    edit: document.createAttribute('src').value = "./edit.png",
-    close: document.createAttribute('src').value = "./close.png",
-    check: document.createAttribute('src').value = "./check.png",
-    btn: document.createElement('button'),
-    img: document.createElement('img'),
-    //td : document.createElement('td'),
-    h3: document.createElement('h3'),
-    placeholder: document.createAttribute('placeholder').value = "Enter",
-    firstName: one.querySelector('input[name="firstName"]'),
-    lastName:  one.querySelector('input[name="lastName"]'),
-    email:  one.querySelector('input[name="email"]'),
-    city: one.querySelector('input[name="city"]'),
-    state: one.querySelector('input[name="state"]'),
-    zipCode: one.querySelector('input[name="zipCode"]'),
-    tr: document.createElement('tr'),
-    
+    btn: document.createElement('button'), 
 }
 
 
-const appendChk = async () => {
-    //btn initiated with value from state
-    let btn = state.btn;
-    //td appended to first row 
-    btn.innerHTML= '<img style="width:`20px`; height: `20px`" src="./check.png"></img>'
-    
-    //new btn is appended to td
+let store = [];
 
-    //inner html of button is check mark
-   
-    //btn is given attr type with a value submit
+const appendChk = async () => {
+    let btn = state.btn;
+    btn.innerHTML= '<img style="width:35px; height: 35px;" src="./check.png"></img>'
     btn.setAttribute('type', 'submit');
-    //btn is given attr form with value form to connect to rest of form
     btn.setAttribute('form', 'form')
     one.appendChild(btn)
 }
@@ -47,24 +24,30 @@ const appendChk = async () => {
     let email = document.getElementById('email').value;
     let city = document.getElementById('city').value;
     let state = document.getElementById('state').value;
-    let zip = document.getElementById('zip').value;
+    let zip = (!Number(document.getElementById('zip').value)) ? "NaN": document.getElementById('zip').value
     console.log(val);
     let tr = document.createElement('tr');
 
     let td = document.createElement('td'); 
-    tr.setAttribute('style', "display: flex; gap: 5vw !important;")
+    
     let table = document.getElementById('tBody')  
-    let edit = document.createElement('button');
-    edit.innerHTML ='<img src="./edit.png">'
-    td.innerHTML= val + " " + last +  "    " + email + " " + city + "  " + state + "    " + zip;
-    td.appendChild(edit);
-    tr.appendChild(td);
-  
+edit = document.createElement('button');
+    let del = document.createElement('button');
 
+    del.innerHTML = `<img style="width:35px; height: 35px;" id="del${counter}" src="./close.png"/>`
+    edit.innerHTML =`<img style="width:35px; height: 35px;"  id="edit${counter}" src="./edit.png"/>`
+    td.innerHTML= val + " " + last +  "  " + email + " " + city + "  " + state + "    " + zip;
+    td.style.wordSpacing = "4vw";  
+    store.push(td);
+    store.push(`edit${counter}`);
+    td.appendChild(edit);
+    td.appendChild(del);
+    tr.appendChild(td);
     table.appendChild(tr); 
         
     
-    }
+    
+}
 
 
    
@@ -76,6 +59,23 @@ form.addEventListener('submit', (e) => {
      counter++;
    })
 
+   //edit fn
+document.addEventListener('click', (e)=> {
+    //exit condition
+    if (!(store.includes(e.target.getAttribute('id')))) {
+        console.log('not a button')
+        return;
+    }
+e.preventDefault();
+let attr = e.target.getAttribute('id');
+let edit = document.getElementById(attr);
+
+})   
+
+
+   function update () {
+
+   }
 
 //function to post must increment counter 
 
