@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css"/>
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="top">
+        <form onsubmit="" id="form">
+        <input name="firstName" placeholder="Enter" form="form" value="" maxlength="12"  id="inp" required/>
+        <input id="last" name="lastName" placeholder="Enter"  form="form" value="" maxlength="12"  required/>
+        <input name="email" placeholder="Enter"  form="form" value="" id="email" maxlength="20" required/ type="email">
+        <input name="city" placeholder="Enter"  form="form" value="" id="city" required maxlength="12" />
+        <input name="state" placeholder="Enter"  form="form" value="" id="state" required maxlength="2"/>
+        <input  name="zipCode" oninput="appendChk()" placeholder="Enter"  form="form" value="" id="zip" maxlength="6" required type="number" />      
+    
+    </form>
+
+
+    <table class="table"><caption><h1>Posts</h1></caption>
+        <thead>
+        <tr style="display: flex; gap:5vw;">
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>E-mail</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip Code</th>
+                   
+        </tr>
+        </thead>
+        <tbody id="tBody">
+    
+        </tbody>
+      
+        </table>
+    </div>
+      
+    
+    
+    <!-- Append td to the next table header. 
+    create an array and iterate through to get
+value of next header. append edit and delete button
+to post-->
+   <script src="./crud.js"></script>  
+</body>
+</html>
