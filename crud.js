@@ -40,7 +40,7 @@ const appendChk = async () => {
     btn.setAttribute('form', 'form')
     one.appendChild(btn)
 }
- 
+ //
     const add = () => {
     let val = document.getElementById('inp').value;
     let last = document.getElementById('last').value;
